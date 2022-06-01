@@ -1,0 +1,52 @@
+{% extends "./base.html"%}
+
+<title>{% block title %} Lista de Productos {% endblock %}</title>
+
+{% block body%}
+
+<div class="row">
+    <div class="col-sm-12 col-md-6 col-lg-8 col-xl-8 ">
+        <h1>Lista de productos</h1>    
+        <div>
+            <a href="{% url 'agregar'%}">Agregar Producto</a> <br>
+        </div>   
+    </div>
+</div>
+
+
+<div class="row mb-4">
+    <div class="col-sm-12 col-md-6 col-lg-8 col-xl-8 ">
+            <table class="table table-responsive id" id="categorias">
+                <thread class="table-dark">
+                    <tr>
+                        <th>idProducto</th>
+                        <th>Nombre</th>
+                        <th>Precio</th>
+                        <th>Stock</th>
+                        <th>Categoria</th>
+                        <th>Especie</th>
+                        <th colspan="2">Opciones</th>
+                    </tr>
+                </thread>
+            <tbody>
+                {% for p in productos%}
+                <tr>
+                <td>{{p.idProducto}} </td>
+                <td>{{p.nombre}} </td>
+                <td>{{p.precio}} </td>
+                <td>{{p.stock}} </td>
+                <td>{{p.categoria}} </td>
+                <td>{{p.especie}} </td>
+                <td> <a href="{% url 'modificarProducto' p.idProducto %}" class="btn btn-info">Modificar</td>
+                <td> <a href="{% url 'eliminarProducto' p.idProducto %}" class="btn btn-danger">Eliminar</td>
+                </tr>
+                {%endfor%}
+            </tbody>
+            </table>
+        </div>
+    </div>
+    <div>
+</div>
+
+
+{% endblock %}
